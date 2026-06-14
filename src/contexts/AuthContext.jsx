@@ -12,16 +12,22 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        // Ensure user profile exists in Firestore
-        const ref = doc(db, 'users', firebaseUser.uid, 'profile', 'info')
-        const snap = await getDoc(ref)
-        if (!snap.exists()) {
-          await setDoc(ref, {
-            displayName: firebaseUser.displayName,
-            email: firebaseUser.email,
-            photoURL: firebaseUser.photoURL,
-            createdAt: serverTimestamp()
-          })
+        // Ensure user profile exists in Firestore.
+        // Wrapped in try/catch so a permission or network error
+        // never leaves the app stuck on the loading screen.
+        try {
+          const ref = doc(db, 'users', firebaseUser.uid, 'profile', 'info')
+          const snap = await getDoc(ref)
+          if (!snap.exists()) {
+            await setDoc(ref, {
+              displayName: firebaseUser.displayName,
+              email: firebaseUser.email,
+              photoURL: firebaseUser.photoURL,
+              createdAt: serverTimestamp()
+            })
+          }
+        } catch (err) {
+          console.error('Failed to load/create user profile:', err)
         }
         setUser(firebaseUser)
       } else {

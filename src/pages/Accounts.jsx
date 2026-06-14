@@ -71,8 +71,8 @@ export default function Accounts() {
       {tab === 'house' && !houseId && (
         <div className="glass" style={{ padding: '28px 20px', textAlign: 'center' }}>
           <div style={{ fontSize: 40, marginBottom: 12 }}>🏡</div>
-          <p style={{ fontSize: 17, fontWeight: 700, marginBottom: 6 }}>Share your home finances</p>
-          <p style={{ fontSize: 14, color: 'var(--text-secondary)', marginBottom: 24, lineHeight: 1.5 }}>
+          <p style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>Share your home finances</p>
+          <p style={{ fontSize: 15, color: 'var(--text-secondary)', marginBottom: 24, lineHeight: 1.5 }}>
             Create a house or join your brother's to share accounts and track house expenses together.
           </p>
           <button className="btn-primary" onClick={() => { setShowHouseSetup(true); setJoinMode(false) }}>
@@ -91,7 +91,7 @@ export default function Accounts() {
             <div className="empty-state">
               <BankIcon />
               <p>No accounts yet</p>
-              <p style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>
+              <p style={{ fontSize: 14, color: 'var(--text-tertiary)' }}>
                 Tap + to add your first {isPrivate ? '' : 'shared '}account
               </p>
             </div>
@@ -113,13 +113,13 @@ export default function Accounts() {
                         width: 44, height: 44, borderRadius: 14,
                         background: `${accountTypeColor[acc.type] || '#5E9BFF'}20`,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 20,
+                        fontSize: 21,
                       }}>
                         {accountTypeEmoji[acc.type] || '💳'}
                       </div>
                       <div>
-                        <p style={{ fontWeight: 700, fontSize: 16 }}>{acc.name}</p>
-                        <p style={{ fontSize: 12, color: 'var(--text-tertiary)', marginTop: 1 }}>
+                        <p style={{ fontWeight: 700, fontSize: 17 }}>{acc.name}</p>
+                        <p style={{ fontSize: 14, color: 'var(--text-tertiary)', marginTop: 1 }}>
                           {accountTypeLabel[acc.type] || 'Other'}
                           {acc.iban && ` · ${acc.iban.slice(-4)}`}
                         </p>
@@ -127,7 +127,7 @@ export default function Accounts() {
                     </div>
                     <div style={{ textAlign: 'right' }}>
                       <p style={{
-                        fontSize: 20, fontWeight: 700,
+                        fontSize: 21, fontWeight: 700,
                         color: (acc.balance || 0) >= 0 ? 'var(--text-primary)' : 'var(--accent-red)',
                       }}>
                         {fmt(acc.balance || 0)}
@@ -146,7 +146,7 @@ export default function Accounts() {
                       </button>
                       <button
                         className="btn-glass"
-                        style={{ width: '100%', color: 'var(--accent-red)', fontSize: 14 }}
+                        style={{ width: '100%', color: 'var(--accent-red)', fontSize: 15 }}
                         onClick={(e) => { e.stopPropagation(); if (confirm('Delete this account?')) deleteAccount(acc.id) }}
                       >
                         Delete Account
@@ -171,19 +171,19 @@ export default function Accounts() {
                       <div style={{
                         width: 36, height: 36, borderRadius: 10,
                         background: tx.type === 'income' ? 'rgba(52,211,153,0.15)' : 'rgba(248,113,113,0.12)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16,
                       }}>
                         {tx.type === 'income' ? '↓' : '↑'}
                       </div>
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <p style={{ fontSize: 14, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <p style={{ fontSize: 15, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                           {tx.description || tx.category}
                         </p>
-                        <p style={{ fontSize: 11, color: 'var(--text-tertiary)', marginTop: 1 }}>
+                        <p style={{ fontSize: 13, color: 'var(--text-tertiary)', marginTop: 1 }}>
                           {fmtDate(tx.date)} · {tx.category}
                         </p>
                       </div>
-                      <p style={{ fontSize: 15, fontWeight: 700, color: tx.type === 'income' ? 'var(--accent-green)' : 'var(--accent-red)' }}>
+                      <p style={{ fontSize: 16, fontWeight: 700, color: tx.type === 'income' ? 'var(--accent-green)' : 'var(--accent-red)' }}>
                         {tx.type === 'income' ? '+' : '-'}{fmt(Math.abs(tx.amount || 0))}
                       </p>
                     </div>
@@ -195,7 +195,7 @@ export default function Accounts() {
           )}
 
           {houseId && (
-            <p style={{ textAlign: 'center', marginTop: 16, fontSize: 12, color: 'var(--text-tertiary)' }}>
+            <p style={{ textAlign: 'center', marginTop: 16, fontSize: 14, color: 'var(--text-tertiary)' }}>
               House code: <span style={{ fontWeight: 700, letterSpacing: 1, color: 'var(--accent-blue)' }}>{houseId}</span>
             </p>
           )}
@@ -241,18 +241,18 @@ export default function Accounts() {
               <>
                 {generatedCode ? (
                   <div>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginBottom: 20 }}>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: 15, marginBottom: 20 }}>
                       Share this code with your brother so he can join your house account.
                     </p>
                     <div className="glass-sm" style={{ padding: '20px', textAlign: 'center', marginBottom: 20 }}>
                       <p style={{ fontSize: 36, fontWeight: 800, letterSpacing: 6, color: 'var(--accent-blue)' }}>{generatedCode}</p>
-                      <p style={{ fontSize: 12, color: 'var(--text-tertiary)', marginTop: 6 }}>House code</p>
+                      <p style={{ fontSize: 14, color: 'var(--text-tertiary)', marginTop: 6 }}>House code</p>
                     </div>
                     <button className="btn-primary" onClick={() => setShowHouseSetup(false)}>Done</button>
                   </div>
                 ) : (
                   <>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginBottom: 24 }}>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: 15, marginBottom: 24 }}>
                       Create a shared house to track joint expenses and bank accounts with your brother.
                     </p>
                     <button className="btn-primary" onClick={handleCreateHouse} disabled={loading}>
@@ -263,7 +263,7 @@ export default function Accounts() {
               </>
             ) : (
               <>
-                <p style={{ color: 'var(--text-secondary)', fontSize: 14, marginBottom: 20 }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: 15, marginBottom: 20 }}>
                   Enter the house code your brother shared with you.
                 </p>
                 <div className="input-group">
@@ -273,7 +273,7 @@ export default function Accounts() {
                     placeholder="ABC123"
                     value={houseCode}
                     onChange={e => setHouseCode(e.target.value.toUpperCase())}
-                    style={{ textAlign: 'center', fontSize: 24, fontWeight: 700, letterSpacing: 4 }}
+                    style={{ textAlign: 'center', fontSize: 25, fontWeight: 700, letterSpacing: 4 }}
                     maxLength={6}
                   />
                 </div>

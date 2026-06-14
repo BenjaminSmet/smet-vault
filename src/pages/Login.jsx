@@ -46,7 +46,7 @@ export default function Login() {
           Smet Vault
         </div>
         <div style={{
-          marginTop: 8, fontSize: 16, fontWeight: 500,
+          marginTop: 8, fontSize: 17, fontWeight: 500,
           color: 'var(--text-secondary)', letterSpacing: 0.2,
         }}>
           Your home finances, together.
@@ -64,7 +64,7 @@ export default function Login() {
           {['Net worth', 'Budgeting', 'Goals', 'Shared house'].map(f => (
             <span key={f} style={{
               padding: '4px 12px', borderRadius: 20,
-              fontSize: 12, fontWeight: 600,
+              fontSize: 14, fontWeight: 600,
               background: 'rgba(255,255,255,0.07)',
               border: '1px solid rgba(255,255,255,0.10)',
               color: 'var(--text-secondary)',
@@ -87,12 +87,12 @@ export default function Login() {
         </button>
 
         {error && (
-          <p style={{ marginTop: 12, textAlign: 'center', fontSize: 13, color: 'var(--accent-red)' }}>
+          <p style={{ marginTop: 12, textAlign: 'center', fontSize: 15, color: 'var(--accent-red)' }}>
             {error}
           </p>
         )}
 
-        <p style={{ marginTop: 20, textAlign: 'center', fontSize: 11, color: 'var(--text-tertiary)', lineHeight: 1.5 }}>
+        <p style={{ marginTop: 20, textAlign: 'center', fontSize: 13, color: 'var(--text-tertiary)', lineHeight: 1.5 }}>
           Your data is private by default. Share only what you choose.
         </p>
       </div>

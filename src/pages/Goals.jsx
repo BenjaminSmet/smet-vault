@@ -43,7 +43,7 @@ export default function Goals() {
           <div className="empty-state">
             <p style={{ fontSize: 40 }}>🎯</p>
             <p>No goals yet</p>
-            <p style={{ fontSize: 12 }}>Set a target and deadline to start saving</p>
+            <p style={{ fontSize: 14 }}>Set a target and deadline to start saving</p>
           </div>
         ) : (
           <div className="card-stack">
@@ -57,20 +57,20 @@ export default function Goals() {
               return (
                 <div key={g.id} className="glass" style={{ padding: '20px', position: 'relative', overflow: 'hidden' }}>
                   {isComplete && (
-                    <div style={{ position: 'absolute', top: 12, right: 12, fontSize: 22 }}>🎉</div>
+                    <div style={{ position: 'absolute', top: 12, right: 12, fontSize: 23 }}>🎉</div>
                   )}
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
                     <div style={{
                       width: 46, height: 46, borderRadius: 14,
                       background: `${g.color || '#5E9BFF'}18`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 23,
                     }}>
                       {g.emoji || '🎯'}
                     </div>
                     <div style={{ flex: 1 }}>
-                      <p style={{ fontWeight: 700, fontSize: 17 }}>{g.name}</p>
+                      <p style={{ fontWeight: 700, fontSize: 18 }}>{g.name}</p>
                       {days !== null && (
-                        <p style={{ fontSize: 12, color: days > 0 ? 'var(--text-tertiary)' : 'var(--accent-red)', marginTop: 1 }}>
+                        <p style={{ fontSize: 14, color: days > 0 ? 'var(--text-tertiary)' : 'var(--accent-red)', marginTop: 1 }}>
                           {days > 0 ? `${days} days left` : days === 0 ? 'Due today' : `${Math.abs(days)} days overdue`}
                         </p>
                       )}
@@ -84,8 +84,8 @@ export default function Goals() {
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
-                    <p style={{ fontSize: 24, fontWeight: 700, color: g.color || 'var(--accent-blue)' }}>{fmt(g.currentAmount || 0)}</p>
-                    <p style={{ fontSize: 14, color: 'var(--text-tertiary)' }}>of {fmt(g.targetAmount)}</p>
+                    <p style={{ fontSize: 25, fontWeight: 700, color: g.color || 'var(--accent-blue)' }}>{fmt(g.currentAmount || 0)}</p>
+                    <p style={{ fontSize: 15, color: 'var(--text-tertiary)' }}>of {fmt(g.targetAmount)}</p>
                   </div>
 
                   <div className="progress-track" style={{ marginBottom: 12 }}>
@@ -98,8 +98,8 @@ export default function Goals() {
                       padding: '10px 12px', borderRadius: 12,
                       background: 'rgba(255,255,255,0.04)', marginBottom: 12,
                     }}>
-                      <p style={{ fontSize: 12, color: 'var(--text-secondary)' }}>Save monthly to hit deadline</p>
-                      <p style={{ fontSize: 15, fontWeight: 700, color: g.color || 'var(--accent-blue)' }}>{fmt(monthly)}/mo</p>
+                      <p style={{ fontSize: 14, color: 'var(--text-secondary)' }}>Save monthly to hit deadline</p>
+                      <p style={{ fontSize: 16, fontWeight: 700, color: g.color || 'var(--accent-blue)' }}>{fmt(monthly)}/mo</p>
                     </div>
                   )}
 
@@ -121,7 +121,7 @@ export default function Goals() {
           <div className="empty-state">
             <p style={{ fontSize: 40 }}>🏡</p>
             <p>Connect your house first</p>
-            <p style={{ fontSize: 12 }}>Set up a shared house in the Accounts tab to track renovation projects together</p>
+            <p style={{ fontSize: 14 }}>Set up a shared house in the Accounts tab to track renovation projects together</p>
           </div>
         ) : (
           <>
@@ -130,12 +130,12 @@ export default function Goals() {
               <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 90% 10%, rgba(167,139,250,0.14) 0%, transparent 60%)', pointerEvents: 'none' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 12 }}>
                 <div>
-                  <p style={{ fontSize: 12, fontWeight: 600, letterSpacing: 0.08, textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: 4 }}>Total Spent</p>
-                  <p style={{ fontSize: 32, fontWeight: 700, letterSpacing: -1, color: 'var(--accent-violet)' }}>{fmt(totalRenoSpent)}</p>
+                  <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: 0.08, textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: 4 }}>Total Spent</p>
+                  <p style={{ fontSize: 33, fontWeight: 700, letterSpacing: -1, color: 'var(--accent-violet)' }}>{fmt(totalRenoSpent)}</p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
-                  <p style={{ fontSize: 12, color: 'var(--text-tertiary)', marginBottom: 2 }}>Budget</p>
-                  <p style={{ fontSize: 18, fontWeight: 700 }}>{fmtCompact(totalRenoBudget)}</p>
+                  <p style={{ fontSize: 14, color: 'var(--text-tertiary)', marginBottom: 2 }}>Budget</p>
+                  <p style={{ fontSize: 19, fontWeight: 700 }}>{fmtCompact(totalRenoBudget)}</p>
                 </div>
               </div>
               <div className="progress-track">
@@ -150,7 +150,7 @@ export default function Goals() {
               <div className="empty-state">
                 <p style={{ fontSize: 40 }}>🔨</p>
                 <p>No renovation projects yet</p>
-                <p style={{ fontSize: 12 }}>Add rooms or projects to track shared spending</p>
+                <p style={{ fontSize: 14 }}>Add rooms or projects to track shared spending</p>
               </div>
             ) : (
               <div className="card-stack">
@@ -163,14 +163,14 @@ export default function Goals() {
                         <div style={{
                           width: 44, height: 44, borderRadius: 14,
                           background: 'rgba(167,139,250,0.15)',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
+                          display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 21,
                         }}>
                           {RENO_EMOJI[r.category] || '📦'}
                         </div>
                         <div style={{ flex: 1 }}>
-                          <p style={{ fontWeight: 700, fontSize: 16 }}>{r.name}</p>
+                          <p style={{ fontWeight: 700, fontSize: 17 }}>{r.name}</p>
                           <div style={{ display: 'flex', gap: 6, marginTop: 3 }}>
-                            <span className="chip chip-violet" style={{ textTransform: 'capitalize', fontSize: 11 }}>{r.category}</span>
+                            <span className="chip chip-violet" style={{ textTransform: 'capitalize', fontSize: 13 }}>{r.category}</span>
                             <StatusChip status={r.status} />
                           </div>
                         </div>
@@ -183,8 +183,8 @@ export default function Goals() {
                       </div>
 
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
-                        <p style={{ fontSize: 20, fontWeight: 700, color: over ? 'var(--accent-red)' : 'var(--accent-violet)' }}>{fmt(r.spent || 0)}</p>
-                        <p style={{ fontSize: 13, color: 'var(--text-tertiary)' }}>budget {fmt(r.budget)}</p>
+                        <p style={{ fontSize: 21, fontWeight: 700, color: over ? 'var(--accent-red)' : 'var(--accent-violet)' }}>{fmt(r.spent || 0)}</p>
+                        <p style={{ fontSize: 15, color: 'var(--text-tertiary)' }}>budget {fmt(r.budget)}</p>
                       </div>
 
                       <div className="progress-track" style={{ marginBottom: 12 }}>
@@ -195,12 +195,12 @@ export default function Goals() {
                       </div>
 
                       <div style={{ display: 'flex', gap: 8 }}>
-                        <button className="btn-glass" style={{ flex: 1, fontSize: 13, padding: '9px' }} onClick={() => setShowRenoUpdate({ ...r, field: 'spent' })}>
+                        <button className="btn-glass" style={{ flex: 1, fontSize: 15, padding: '9px' }} onClick={() => setShowRenoUpdate({ ...r, field: 'spent' })}>
                           + Log Spending
                         </button>
                         <select
                           className="input-field"
-                          style={{ width: 'auto', padding: '9px 10px', fontSize: 12 }}
+                          style={{ width: 'auto', padding: '9px 10px', fontSize: 14 }}
                           value={r.status}
                           onChange={e => updateRenovation(r.id, { status: e.target.value })}
                         >
@@ -267,7 +267,7 @@ function StatusChip({ status }) {
     done: { label: 'Done', cls: 'chip-green' },
   }
   const s = map[status] || map.planned
-  return <span className={`chip ${s.cls}`} style={{ fontSize: 11 }}>{s.label}</span>
+  return <span className={`chip ${s.cls}`} style={{ fontSize: 13 }}>{s.label}</span>
 }
 
 function AddGoalSheet({ onAdd, onClose }) {
@@ -285,7 +285,7 @@ function AddGoalSheet({ onAdd, onClose }) {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {GOAL_EMOJIS.map(em => (
               <button key={em} onClick={() => set('emoji', em)} style={{
-                width: 44, height: 44, borderRadius: 12, fontSize: 22,
+                width: 44, height: 44, borderRadius: 12, fontSize: 23,
                 background: form.emoji === em ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.06)',
                 border: form.emoji === em ? '1px solid rgba(255,255,255,0.30)' : '1px solid rgba(255,255,255,0.08)',
                 cursor: 'pointer',
@@ -343,7 +343,7 @@ function ContributeSheet({ goal, onAction, onClose }) {
         <p className="sheet-title">Contribute to {goal.name}</p>
         <div className="input-group">
           <label className="input-label">Amount (€)</label>
-          <input className="input-field" type="number" placeholder="0.00" value={amount} onChange={e => setAmount(e.target.value)} style={{ fontSize: 24, fontWeight: 700 }} />
+          <input className="input-field" type="number" placeholder="0.00" value={amount} onChange={e => setAmount(e.target.value)} style={{ fontSize: 25, fontWeight: 700 }} />
         </div>
         <button
           className="btn-primary"
@@ -402,7 +402,7 @@ function LogSpendingSheet({ reno, onAdd, onClose }) {
         <p className="sheet-title">Log Spending — {reno.name}</p>
         <div className="input-group">
           <label className="input-label">Amount (€)</label>
-          <input className="input-field" type="number" placeholder="0.00" value={amount} onChange={e => setAmount(e.target.value)} style={{ fontSize: 24, fontWeight: 700 }} />
+          <input className="input-field" type="number" placeholder="0.00" value={amount} onChange={e => setAmount(e.target.value)} style={{ fontSize: 25, fontWeight: 700 }} />
         </div>
         <button className="btn-primary" disabled={!amount} onClick={() => onAdd(parseFloat(amount))}>
           + Add to Spent

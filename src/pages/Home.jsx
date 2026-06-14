@@ -19,10 +19,10 @@ export default function Home() {
     <div className="page-scroll fade-in">
       {/* Greeting */}
       <div style={{ marginBottom: 24 }}>
-        <p style={{ fontSize: 15, color: 'var(--text-secondary)', fontWeight: 500 }}>
+        <p style={{ fontSize: 16, color: 'var(--text-secondary)', fontWeight: 500 }}>
           {greeting},
         </p>
-        <h1 style={{ fontSize: 30, fontWeight: 700, letterSpacing: -0.5 }}>{firstName} 👋</h1>
+        <h1 style={{ fontSize: 31, fontWeight: 700, letterSpacing: -0.5 }}>{firstName} 👋</h1>
       </div>
 
       {/* Net worth hero card */}
@@ -33,7 +33,7 @@ export default function Home() {
           background: 'radial-gradient(circle, rgba(94,155,255,0.15) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
-        <p style={{ fontSize: 12, fontWeight: 600, letterSpacing: 0.08, textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: 8 }}>
+        <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: 0.08, textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: 8 }}>
           Total Net Worth
         </p>
         <div className={`big-number ${totalBalance >= 0 ? 'positive' : 'negative'}`}>
@@ -42,13 +42,13 @@ export default function Home() {
 
         <div style={{ display: 'flex', gap: 16, marginTop: 16 }}>
           <div style={{ flex: 1 }}>
-            <p style={{ fontSize: 11, color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: 0.05, textTransform: 'uppercase', marginBottom: 2 }}>Private</p>
-            <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)' }}>{fmtCompact(privateBalance)}</p>
+            <p style={{ fontSize: 13, color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: 0.05, textTransform: 'uppercase', marginBottom: 2 }}>Private</p>
+            <p style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-primary)' }}>{fmtCompact(privateBalance)}</p>
           </div>
           <div style={{ width: 1, background: 'rgba(255,255,255,0.08)' }} />
           <div style={{ flex: 1 }}>
-            <p style={{ fontSize: 11, color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: 0.05, textTransform: 'uppercase', marginBottom: 2 }}>🏠 House</p>
-            <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)' }}>{fmtCompact(houseBalance)}</p>
+            <p style={{ fontSize: 13, color: 'var(--text-tertiary)', fontWeight: 600, letterSpacing: 0.05, textTransform: 'uppercase', marginBottom: 2 }}>🏠 House</p>
+            <p style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-primary)' }}>{fmtCompact(houseBalance)}</p>
           </div>
         </div>
       </div>
@@ -59,19 +59,19 @@ export default function Home() {
         <div className="glass" style={{ flex: 1, padding: '20px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
           <FreedomScoreRing score={freedomScore} />
           <div style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: 0.06, textTransform: 'uppercase', color: 'var(--text-tertiary)' }}>Freedom</p>
-            <p style={{ fontSize: 11, color: scoreColor(freedomScore), fontWeight: 700, marginTop: 2 }}>{scoreLabel(freedomScore)}</p>
+            <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: 0.06, textTransform: 'uppercase', color: 'var(--text-tertiary)' }}>Freedom</p>
+            <p style={{ fontSize: 13, color: scoreColor(freedomScore), fontWeight: 700, marginTop: 2 }}>{scoreLabel(freedomScore)}</p>
           </div>
         </div>
 
         {/* Runway */}
         <div className="glass" style={{ flex: 1.4, padding: '20px 16px' }}>
-          <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: 0.06, textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: 6 }}>Financial Runway</p>
+          <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: 0.06, textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: 6 }}>Financial Runway</p>
           {runway !== null ? (
             <>
-              <p style={{ fontSize: 28, fontWeight: 700, letterSpacing: -1, color: runwayColor(runway) }}>
+              <p style={{ fontSize: 29, fontWeight: 700, letterSpacing: -1, color: runwayColor(runway) }}>
                 {runway.toFixed(1)}
-                <span style={{ fontSize: 14, fontWeight: 600, marginLeft: 4, color: 'var(--text-secondary)' }}>mo</span>
+                <span style={{ fontSize: 15, fontWeight: 600, marginLeft: 4, color: 'var(--text-secondary)' }}>mo</span>
               </p>
               <div style={{ marginTop: 10 }}>
                 <div className="progress-track">
@@ -80,13 +80,13 @@ export default function Home() {
                     background: runwayColor(runway),
                   }} />
                 </div>
-                <p style={{ fontSize: 11, color: 'var(--text-tertiary)', marginTop: 4 }}>
+                <p style={{ fontSize: 13, color: 'var(--text-tertiary)', marginTop: 4 }}>
                   {fmt(monthlyFixed)}/mo fixed costs
                 </p>
               </div>
             </>
           ) : (
-            <p style={{ fontSize: 14, color: 'var(--text-tertiary)', marginTop: 4 }}>
+            <p style={{ fontSize: 15, color: 'var(--text-tertiary)', marginTop: 4 }}>
               Add savings & fixed costs to calculate
             </p>
           )}
@@ -103,8 +103,8 @@ export default function Home() {
               return (
                 <div key={g.id} className="glass-sm" style={{ padding: '14px 16px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <p style={{ fontWeight: 600, fontSize: 15 }}>{g.name}</p>
-                    <p style={{ fontSize: 13, fontWeight: 700, color: g.color || 'var(--accent-blue)' }}>
+                    <p style={{ fontWeight: 600, fontSize: 16 }}>{g.name}</p>
+                    <p style={{ fontSize: 15, fontWeight: 700, color: g.color || 'var(--accent-blue)' }}>
                       {Math.round(progress)}%
                     </p>
                   </div>
@@ -112,8 +112,8 @@ export default function Home() {
                     <div className="progress-fill" style={{ width: `${progress}%`, background: g.color || 'var(--accent-blue)' }} />
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 6 }}>
-                    <p style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{fmt(g.currentAmount || 0)}</p>
-                    <p style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>{fmt(g.targetAmount)}</p>
+                    <p style={{ fontSize: 14, color: 'var(--text-secondary)' }}>{fmt(g.currentAmount || 0)}</p>
+                    <p style={{ fontSize: 14, color: 'var(--text-tertiary)' }}>{fmt(g.targetAmount)}</p>
                   </div>
                 </div>
               )
@@ -131,15 +131,15 @@ export default function Home() {
               const pct = p.targetAmount > 0 ? Math.min(100, ((p.currentAmount || 0) / p.targetAmount) * 100) : 0
               return (
                 <div key={p.id} className="glass-sm" style={{ padding: '14px', minWidth: 130, flex: '0 0 auto' }}>
-                  <div style={{ fontSize: 24, marginBottom: 6 }}>{p.emoji || '🐷'}</div>
-                  <p style={{ fontWeight: 600, fontSize: 13, marginBottom: 4 }}>{p.name}</p>
-                  <p style={{ fontSize: 15, fontWeight: 700, color: p.color || 'var(--accent-green)' }}>
+                  <div style={{ fontSize: 25, marginBottom: 6 }}>{p.emoji || '🐷'}</div>
+                  <p style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>{p.name}</p>
+                  <p style={{ fontSize: 16, fontWeight: 700, color: p.color || 'var(--accent-green)' }}>
                     {fmtCompact(p.currentAmount || 0)}
                   </p>
                   <div className="progress-track" style={{ marginTop: 8 }}>
                     <div className="progress-fill" style={{ width: `${pct}%`, background: p.color || 'var(--accent-green)' }} />
                   </div>
-                  <p style={{ fontSize: 10, color: 'var(--text-tertiary)', marginTop: 4 }}>{Math.round(pct)}% of {fmtCompact(p.targetAmount)}</p>
+                  <p style={{ fontSize: 12, color: 'var(--text-tertiary)', marginTop: 4 }}>{Math.round(pct)}% of {fmtCompact(p.targetAmount)}</p>
                 </div>
               )
             })}
@@ -163,20 +163,20 @@ export default function Home() {
                   width: 38, height: 38, borderRadius: 12,
                   background: tx.type === 'income' ? 'rgba(52,211,153,0.15)' : 'rgba(248,113,113,0.12)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 16, flexShrink: 0,
+                  fontSize: 17, flexShrink: 0,
                 }}>
                   {tx.type === 'income' ? '↓' : '↑'}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  <p style={{ fontSize: 15, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {tx.description || tx.category}
-                    {tx.isShared && <span className="badge" style={{ marginLeft: 6, fontSize: 10 }}>🏠</span>}
+                    {tx.isShared && <span className="badge" style={{ marginLeft: 6, fontSize: 12 }}>🏠</span>}
                   </p>
-                  <p style={{ fontSize: 12, color: 'var(--text-tertiary)', marginTop: 1 }}>
+                  <p style={{ fontSize: 14, color: 'var(--text-tertiary)', marginTop: 1 }}>
                     {fmtDate(tx.date)} · {tx.category}
                   </p>
                 </div>
-                <p style={{ fontSize: 15, fontWeight: 700, flexShrink: 0, color: tx.type === 'income' ? 'var(--accent-green)' : 'var(--accent-red)' }}>
+                <p style={{ fontSize: 16, fontWeight: 700, flexShrink: 0, color: tx.type === 'income' ? 'var(--accent-green)' : 'var(--accent-red)' }}>
                   {tx.type === 'income' ? '+' : '-'}{fmt(Math.abs(tx.amount || 0))}
                 </p>
               </div>

@@ -17,6 +17,7 @@ const TABS = [
 export default function App() {
   const { user, loading } = useAuth()
   const [activeTab, setActiveTab] = useState('home')
+  const activeIndex = TABS.findIndex(t => t.id === activeTab)
 
   if (loading) {
     return (
@@ -41,6 +42,7 @@ export default function App() {
           {activeTab === 'goals'    && <Goals />}
 
           <nav className="tab-bar">
+            <div className="tab-indicator" style={{ transform: `translateX(${activeIndex * 100}%)` }} />
             {TABS.map(tab => {
               const Icon = tab.icon
               const active = activeTab === tab.id

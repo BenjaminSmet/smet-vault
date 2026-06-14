@@ -46,12 +46,12 @@ export default function Budget() {
             <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 90% 10%, rgba(248,113,113,0.12) 0%, transparent 60%)', pointerEvents: 'none' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
               <div>
-                <p style={{ fontSize: 12, fontWeight: 600, letterSpacing: 0.08, textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: 4 }}>Monthly Fixed</p>
+                <p style={{ fontSize: 14, fontWeight: 600, letterSpacing: 0.08, textTransform: 'uppercase', color: 'var(--text-tertiary)', marginBottom: 4 }}>Monthly Fixed</p>
                 <p style={{ fontSize: 36, fontWeight: 700, letterSpacing: -1, color: 'var(--accent-red)' }}>{fmt(monthlyFixed)}</p>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <p style={{ fontSize: 12, color: 'var(--text-tertiary)', marginBottom: 2 }}>Yearly total</p>
-                <p style={{ fontSize: 18, fontWeight: 700 }}>{fmtCompact(yearlyFixed)}</p>
+                <p style={{ fontSize: 14, color: 'var(--text-tertiary)', marginBottom: 2 }}>Yearly total</p>
+                <p style={{ fontSize: 19, fontWeight: 700 }}>{fmtCompact(yearlyFixed)}</p>
               </div>
             </div>
             {fixedCosts.length > 0 && (
@@ -63,16 +63,16 @@ export default function Budget() {
 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <p className="section-label" style={{ marginBottom: 0 }}>Monthly Expenses</p>
-            <button className="btn-glass" style={{ padding: '8px 14px', fontSize: 13 }} onClick={() => setShowAddFixed(true)}>
+            <button className="btn-glass" style={{ padding: '8px 14px', fontSize: 15 }} onClick={() => setShowAddFixed(true)}>
               + Add
             </button>
           </div>
 
           {fixedCosts.length === 0 ? (
             <div className="empty-state">
-              <p style={{ fontSize: 32 }}>📋</p>
+              <p style={{ fontSize: 33 }}>📋</p>
               <p>No fixed costs yet</p>
-              <p style={{ fontSize: 12 }}>Add rent, subscriptions, utilities…</p>
+              <p style={{ fontSize: 14 }}>Add rent, subscriptions, utilities…</p>
             </div>
           ) : (
             <div className="glass" style={{ overflow: 'hidden' }}>
@@ -83,21 +83,21 @@ export default function Budget() {
                     <div style={{
                       width: 38, height: 38, borderRadius: 12,
                       background: `${cost.color || '#5E9BFF'}18`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18,
                     }}>
                       {CAT_EMOJI[cost.category] || '📦'}
                     </div>
                     <div style={{ flex: 1 }}>
-                      <p style={{ fontWeight: 600, fontSize: 14 }}>{cost.name}</p>
-                      <p style={{ fontSize: 11, color: 'var(--text-tertiary)', marginTop: 1, textTransform: 'capitalize' }}>
+                      <p style={{ fontWeight: 600, fontSize: 15 }}>{cost.name}</p>
+                      <p style={{ fontSize: 13, color: 'var(--text-tertiary)', marginTop: 1, textTransform: 'capitalize' }}>
                         {cost.category} · {cost.frequency === 'yearly' ? 'yearly' : 'monthly'}
                       </p>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <div style={{ textAlign: 'right' }}>
-                        <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--accent-red)' }}>{fmt(cost.amount)}</p>
+                        <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--accent-red)' }}>{fmt(cost.amount)}</p>
                         {cost.frequency === 'yearly' && (
-                          <p style={{ fontSize: 10, color: 'var(--text-tertiary)' }}>{fmt(cost.amount / 12)}/mo</p>
+                          <p style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>{fmt(cost.amount / 12)}/mo</p>
                         )}
                       </div>
                       <button
@@ -121,7 +121,7 @@ export default function Budget() {
         <>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <p className="section-label" style={{ marginBottom: 0 }}>Your Jars</p>
-            <button className="btn-glass" style={{ padding: '8px 14px', fontSize: 13 }} onClick={() => setShowAddPiggy(true)}>
+            <button className="btn-glass" style={{ padding: '8px 14px', fontSize: 15 }} onClick={() => setShowAddPiggy(true)}>
               + New Jar
             </button>
           </div>
@@ -130,7 +130,7 @@ export default function Budget() {
             <div className="empty-state">
               <p style={{ fontSize: 40 }}>🐷</p>
               <p>No piggy banks yet</p>
-              <p style={{ fontSize: 12 }}>Create jars for holiday, car, emergency fund…</p>
+              <p style={{ fontSize: 14 }}>Create jars for holiday, car, emergency fund…</p>
             </div>
           ) : (
             <div className="card-stack">
@@ -143,20 +143,20 @@ export default function Budget() {
                         <div style={{
                           width: 44, height: 44, borderRadius: 14,
                           background: `${p.color || '#34D399'}18`,
-                          display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22,
+                          display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 23,
                         }}>
                           {p.emoji || '🐷'}
                         </div>
                         <div>
-                          <p style={{ fontWeight: 700, fontSize: 16 }}>{p.name}</p>
-                          <p style={{ fontSize: 22, fontWeight: 700, color: p.color || '#34D399', marginTop: 2 }}>
+                          <p style={{ fontWeight: 700, fontSize: 17 }}>{p.name}</p>
+                          <p style={{ fontSize: 23, fontWeight: 700, color: p.color || '#34D399', marginTop: 2 }}>
                             {fmt(p.currentAmount || 0)}
                           </p>
                         </div>
                       </div>
                       <div style={{ textAlign: 'right' }}>
-                        <p style={{ fontSize: 13, fontWeight: 700, color: p.color || '#34D399' }}>{Math.round(pct)}%</p>
-                        <p style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>of {fmtCompact(p.targetAmount)}</p>
+                        <p style={{ fontSize: 15, fontWeight: 700, color: p.color || '#34D399' }}>{Math.round(pct)}%</p>
+                        <p style={{ fontSize: 14, color: 'var(--text-tertiary)' }}>of {fmtCompact(p.targetAmount)}</p>
                       </div>
                     </div>
 
@@ -167,14 +167,14 @@ export default function Budget() {
                     <div style={{ display: 'flex', gap: 8 }}>
                       <button
                         className="btn-glass"
-                        style={{ flex: 1, fontSize: 13, padding: '9px' }}
+                        style={{ flex: 1, fontSize: 15, padding: '9px' }}
                         onClick={() => setShowDeposit({ id: p.id, name: p.name, mode: 'deposit' })}
                       >
                         + Deposit
                       </button>
                       <button
                         className="btn-glass"
-                        style={{ flex: 1, fontSize: 13, padding: '9px' }}
+                        style={{ flex: 1, fontSize: 15, padding: '9px' }}
                         onClick={() => setShowDeposit({ id: p.id, name: p.name, mode: 'withdraw' })}
                       >
                         − Withdraw
@@ -257,7 +257,7 @@ function CategoryBar({ costs }) {
         {entries.map(([cat, amt]) => (
           <div key={cat} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             <div style={{ width: 7, height: 7, borderRadius: 2, background: catColors[cat] || '#94A3B8' }} />
-            <span style={{ fontSize: 11, color: 'var(--text-secondary)', textTransform: 'capitalize' }}>{cat}</span>
+            <span style={{ fontSize: 13, color: 'var(--text-secondary)', textTransform: 'capitalize' }}>{cat}</span>
           </div>
         ))}
       </div>
@@ -325,7 +325,7 @@ function AddPiggySheet({ onAdd, onClose }) {
               <button key={em}
                 onClick={() => set('emoji', em)}
                 style={{
-                  width: 44, height: 44, borderRadius: 12, fontSize: 22,
+                  width: 44, height: 44, borderRadius: 12, fontSize: 23,
                   background: form.emoji === em ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.06)',
                   border: form.emoji === em ? '1px solid rgba(255,255,255,0.30)' : '1px solid rgba(255,255,255,0.08)',
                   cursor: 'pointer',
@@ -379,7 +379,7 @@ function DepositSheet({ piggy, onAction, onClose }) {
         <p className="sheet-title">{isDeposit ? 'Deposit into' : 'Withdraw from'} {piggy.name}</p>
         <div className="input-group">
           <label className="input-label">Amount (€)</label>
-          <input className="input-field" type="number" placeholder="0.00" value={amount} onChange={e => setAmount(e.target.value)} style={{ fontSize: 24, fontWeight: 700 }} />
+          <input className="input-field" type="number" placeholder="0.00" value={amount} onChange={e => setAmount(e.target.value)} style={{ fontSize: 25, fontWeight: 700 }} />
         </div>
         <button
           className="btn-primary"
@@ -424,7 +424,7 @@ function CanIBuyThisSheet({ savingsBalance, monthlyFixed, goals, onClose }) {
             placeholder="0.00"
             value={price}
             onChange={e => { setPrice(e.target.value); setVerdict(null) }}
-            style={{ fontSize: 28, fontWeight: 700, textAlign: 'center' }}
+            style={{ fontSize: 29, fontWeight: 700, textAlign: 'center' }}
           />
         </div>
 
@@ -440,7 +440,7 @@ function CanIBuyThisSheet({ savingsBalance, monthlyFixed, goals, onClose }) {
               textAlign: 'center',
             }}>
               <p style={{ fontSize: 42 }}>{verdict.canAfford ? '✅' : '⚠️'}</p>
-              <p style={{ fontSize: 20, fontWeight: 700, marginTop: 8, color: verdict.canAfford ? 'var(--accent-green)' : 'var(--accent-red)' }}>
+              <p style={{ fontSize: 21, fontWeight: 700, marginTop: 8, color: verdict.canAfford ? 'var(--accent-green)' : 'var(--accent-red)' }}>
                 {verdict.canAfford ? 'Yes, you can!' : 'Not right now'}
               </p>
             </div>
@@ -454,7 +454,7 @@ function CanIBuyThisSheet({ savingsBalance, monthlyFixed, goals, onClose }) {
               {verdict.strainGoals && (
                 <>
                   <div className="divider" />
-                  <p style={{ fontSize: 12, color: 'var(--accent-amber)', paddingTop: 8 }}>
+                  <p style={{ fontSize: 14, color: 'var(--accent-amber)', paddingTop: 8 }}>
                     ⚠️ This purchase may affect your active goals.
                   </p>
                 </>
@@ -470,8 +470,8 @@ function CanIBuyThisSheet({ savingsBalance, monthlyFixed, goals, onClose }) {
 function Row({ label, value, color }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}>
-      <p style={{ fontSize: 13, color: 'var(--text-secondary)' }}>{label}</p>
-      <p style={{ fontSize: 13, fontWeight: 700, color: color || 'var(--text-primary)' }}>{value}</p>
+      <p style={{ fontSize: 15, color: 'var(--text-secondary)' }}>{label}</p>
+      <p style={{ fontSize: 15, fontWeight: 700, color: color || 'var(--text-primary)' }}>{value}</p>
     </div>
   )
 }

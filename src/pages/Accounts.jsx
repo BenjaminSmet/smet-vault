@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useFinance } from '../contexts/FinanceContext'
 import { useAuth } from '../contexts/AuthContext'
+import { useUI } from '../contexts/UIContext'
 import { fmt, fmtDate, accountTypeLabel, accountTypeColor, randomColor } from '../utils/finance'
 
 export default function Accounts() {
   const { user } = useAuth()
+  const { setSheetOpen } = useUI()
   const {
     accounts, houseAccounts, allTransactions,
     addAccount, addHouseAccount, deleteAccount,
@@ -20,6 +22,12 @@ export default function Accounts() {
   const [generatedCode, setGeneratedCode] = useState(null)
   const [joinMode, setJoinMode]       = useState(false)
   const [loading, setLoading]         = useState(false)
+
+  useEffect(() => {
+    const anyOpen = showAddAccount || showAddTx || showHouseSetup
+    setSheetOpen(anyOpen)
+    return () => setSheetOpen(false)
+  }, [showAddAccount, showAddTx, showHouseSetup, setSheetOpen])
 
   const isPrivate = tab === 'private'
   const currentAccounts = isPrivate ? accounts : houseAccounts

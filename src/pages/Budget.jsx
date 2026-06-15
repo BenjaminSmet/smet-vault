@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useFinance } from '../contexts/FinanceContext'
+import { useUI } from '../contexts/UIContext'
 import { fmt, fmtCompact, randomColor } from '../utils/finance'
 
 const CATEGORIES = ['housing','food','transport','health','entertainment','utilities','insurance','subscriptions','other']
@@ -8,6 +9,7 @@ const PIGGY_EMOJIS = ['🐷','🏦','✈️','🎮','👗','🏋️','🎸','�
 const COLORS = ['#5E9BFF','#A78BFA','#34D399','#FBBF24','#F87171','#2DD4BF','#FB923C','#EC4899']
 
 export default function Budget() {
+  const { setSheetOpen } = useUI()
   const {
     fixedCosts, monthlyFixed, addFixedCost, deleteFixedCost,
     piggyBanks, addPiggyBank, updatePiggyBank, deletePiggyBank,
@@ -19,6 +21,12 @@ export default function Budget() {
   const [showAddPiggy, setShowAddPiggy]   = useState(false)
   const [showCalculator, setShowCalculator] = useState(false)
   const [showDeposit, setShowDeposit]     = useState(null) // piggy bank id
+
+  useEffect(() => {
+    const anyOpen = showAddFixed || showAddPiggy || showCalculator || !!showDeposit
+    setSheetOpen(anyOpen)
+    return () => setSheetOpen(false)
+  }, [showAddFixed, showAddPiggy, showCalculator, showDeposit, setSheetOpen])
 
   const yearlyFixed = fixedCosts.reduce((s, c) =>
     s + (c.frequency === 'yearly' ? (c.amount || 0) : (c.amount || 0) * 12), 0)

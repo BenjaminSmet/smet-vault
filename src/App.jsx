@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from './contexts/AuthContext'
 import { FinanceProvider } from './contexts/FinanceContext'
+import { UIProvider, useUI } from './contexts/UIContext'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Accounts from './pages/Accounts'
@@ -16,8 +17,6 @@ const TABS = [
 
 export default function App() {
   const { user, loading } = useAuth()
-  const [activeTab, setActiveTab] = useState('home')
-  const activeIndex = TABS.findIndex(t => t.id === activeTab)
 
   if (loading) {
     return (
@@ -34,33 +33,45 @@ export default function App() {
 
   return (
     <FinanceProvider>
-      <div className="app-root">
-        <div className="app-layout">
-          {activeTab === 'home'     && <Home />}
-          {activeTab === 'accounts' && <Accounts />}
-          {activeTab === 'budget'   && <Budget />}
-          {activeTab === 'goals'    && <Goals />}
-
-          <nav className="tab-bar">
-            <div className="tab-indicator" style={{ transform: `translateX(${activeIndex * 100}%)` }} />
-            {TABS.map(tab => {
-              const Icon = tab.icon
-              const active = activeTab === tab.id
-              return (
-                <button
-                  key={tab.id}
-                  className={`tab-item ${active ? 'active' : ''}`}
-                  onClick={() => setActiveTab(tab.id)}
-                >
-                  <Icon filled={active} />
-                  <span className="tab-label">{tab.label}</span>
-                </button>
-              )
-            })}
-          </nav>
-        </div>
-      </div>
+      <UIProvider>
+        <AppShell />
+      </UIProvider>
     </FinanceProvider>
+  )
+}
+
+function AppShell() {
+  const [activeTab, setActiveTab] = useState('home')
+  const { sheetOpen } = useUI()
+  const activeIndex = TABS.findIndex(t => t.id === activeTab)
+
+  return (
+    <div className="app-root">
+      <div className="app-layout">
+        {activeTab === 'home'     && <Home />}
+        {activeTab === 'accounts' && <Accounts />}
+        {activeTab === 'budget'   && <Budget />}
+        {activeTab === 'goals'    && <Goals />}
+
+        <nav className={`tab-bar ${sheetOpen ? 'tab-bar-hidden' : ''}`}>
+          <div className="tab-indicator" style={{ transform: `translateX(${activeIndex * 100}%)` }} />
+          {TABS.map(tab => {
+            const Icon = tab.icon
+            const active = activeTab === tab.id
+            return (
+              <button
+                key={tab.id}
+                className={`tab-item ${active ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                <Icon filled={active} />
+                <span className="tab-label">{tab.label}</span>
+              </button>
+            )
+          })}
+        </nav>
+      </div>
+    </div>
   )
 }
 

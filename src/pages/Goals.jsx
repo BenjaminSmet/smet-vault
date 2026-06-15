@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useFinance } from '../contexts/FinanceContext'
+import { useUI } from '../contexts/UIContext'
 import { fmt, fmtCompact, daysUntil, monthlyNeeded, pct, randomColor } from '../utils/finance'
 
 const GOAL_EMOJIS = ['🎯','✈️','🏠','🚗','💍','🎓','💻','📷','🏝️','🎸','👶','🛋️']
@@ -8,6 +9,7 @@ const RENO_CATEGORIES = ['kitchen','bathroom','living room','bedroom','exterior'
 const RENO_EMOJI = { kitchen:'🍳', bathroom:'🚿', 'living room':'🛋️', bedroom:'🛏️', exterior:'🏡', flooring:'🪵', electrical:'💡', plumbing:'🔧', furniture:'🪑', other:'📦' }
 
 export default function Goals() {
+  const { setSheetOpen } = useUI()
   const {
     goals, addGoal, updateGoal, deleteGoal,
     renovations, addRenovation, updateRenovation, deleteRenovation,
@@ -19,6 +21,13 @@ export default function Goals() {
   const [showDeposit, setShowDeposit]   = useState(null)
   const [showAddReno, setShowAddReno]   = useState(false)
   const [showRenoUpdate, setShowRenoUpdate] = useState(null)
+
+  useEffect(() => {
+    const anyOpen = showAddGoal || !!showDeposit || showAddReno || !!showRenoUpdate
+    setSheetOpen(anyOpen)
+    return () => setSheetOpen(false)
+  }, [showAddGoal, showDeposit, showAddReno, showRenoUpdate, setSheetOpen])
+
 
   const totalRenoBudget = renovations.reduce((s, r) => s + (r.budget || 0), 0)
   const totalRenoSpent  = renovations.reduce((s, r) => s + (r.spent || 0), 0)

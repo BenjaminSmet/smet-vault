@@ -47,12 +47,32 @@ function AppShell() {
 
   return (
     <div className="app-root">
+      {/* Sidebar nav — only visible at desktop breakpoint via CSS */}
+      <nav className="sidebar-nav">
+        <div className="sidebar-logo">SV</div>
+        {TABS.map(tab => {
+          const Icon = tab.icon
+          const active = activeTab === tab.id
+          return (
+            <button
+              key={tab.id}
+              className={`sidebar-item ${active ? 'active' : ''}`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              <Icon filled={active} />
+              <span className="sidebar-label">{tab.label}</span>
+            </button>
+          )
+        })}
+      </nav>
+
       <div className="app-layout">
         {activeTab === 'home'     && <Home />}
         {activeTab === 'accounts' && <Accounts />}
         {activeTab === 'budget'   && <Budget />}
         {activeTab === 'goals'    && <Goals />}
 
+        {/* Bottom floating tab bar — only visible on mobile via CSS */}
         <nav className={`tab-bar ${sheetOpen ? 'tab-bar-hidden' : ''}`}>
           <div className="tab-indicator" style={{ transform: `translateX(${activeIndex * 100}%)` }} />
           {TABS.map(tab => {

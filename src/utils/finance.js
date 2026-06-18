@@ -17,6 +17,13 @@ export const fmtDate = (timestamp) => {
   return d.toLocaleDateString('nl-BE', { day: '2-digit', month: 'short' })
 }
 
+/** Format a full date (for calendar / due dates) */
+export const fmtDateFull = (timestamp) => {
+  if (!timestamp) return '—'
+  const d = timestamp.toDate ? timestamp.toDate() : new Date(timestamp)
+  return d.toLocaleDateString('nl-BE', { day: '2-digit', month: 'short', year: 'numeric' })
+}
+
 /** Days until a deadline */
 export const daysUntil = (deadline) => {
   if (!deadline) return null
@@ -37,19 +44,18 @@ export const monthlyNeeded = (target, current, deadline) => {
 export const pct = (current, target) =>
   target > 0 ? Math.min(100, Math.round((current / target) * 100)) : 0
 
-/** Category to emoji */
-export const categoryEmoji = {
-  housing:      '🏠',
-  food:         '🛒',
-  transport:    '🚗',
-  health:       '💊',
-  entertainment:'🎬',
-  utilities:    '💡',
-  insurance:    '🛡️',
-  subscriptions:'📱',
-  savings:      '💰',
-  income:       '💸',
-  other:        '📦',
+/** Frequency quick-presets, in months. "custom" lets the user type any number. */
+export const FREQUENCY_PRESETS = [
+  { label: 'Monthly',   months: 1 },
+  { label: 'Quarterly', months: 3 },
+  { label: 'Biannual',  months: 6 },
+  { label: 'Yearly',    months: 12 },
+]
+
+export const frequencyLabel = (months) => {
+  const preset = FREQUENCY_PRESETS.find(f => f.months === months)
+  if (preset) return preset.label
+  return `Every ${months} mo`
 }
 
 /** Account type to label */
